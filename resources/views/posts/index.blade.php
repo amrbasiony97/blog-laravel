@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="mt-3 text-center">
-    <a name="create-post" id="create-post" class="btn btn-success" href="#" role="button">Create Post</a>
+    <a name="create-post" id="create-post" class="btn btn-success" href="{{ route('posts.create') }}" role="button">Create Post</a>
 </div>
 <div class="table-responsive mt-3">
     <table class="table table-light">

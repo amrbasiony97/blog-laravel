@@ -36,4 +36,17 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+        // Store data in database
+        // ...
+
+        return redirect()->route('posts.index');
+    }
 }
