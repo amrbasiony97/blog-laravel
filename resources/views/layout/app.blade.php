@@ -14,19 +14,22 @@
 
 <body>
 
-        <header>
-            <nav class="nav bg-dark text-light justify-content-start">
-                <a class="nav-link text-light" href="{{ route('posts.index') }}">ITI Blog</a>
-                <a class="nav-link text-light" href="{{ route('posts.index') }}">All Blogs</a>
-            </nav>
-        </header>
-        <main class="container">
-            @yield('content')
-        </main>
+    <header>
+        <nav class="nav bg-dark text-light justify-content-start">
+            <a class="nav-link text-light" href="{{ route('posts.index') }}">ITI Blog</a>
+            <a class="nav-link text-light" href="{{ route('posts.index') }}">All Blogs</a>
+        </nav>
+    </header>
+    <main class="container">
+        @yield('content')
+    </main>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
+
+    <!-- Load Jquery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>

@@ -26,8 +26,8 @@
                 <td>{{ $post['created_at'] }}</td>
                 <td>
                     <a name="btn-view" id="btn-view" class="btn btn-success" href="/posts/{{ $post['id'] }}" role="button">View</a>
-                    <a name="btn-edit" id="btn-edit" class="btn btn-primary" href="/posts/{{ $post['id'] }}" role="button">Edit</a>
-                    <a name="btn-delete" id="btn-delete" class="btn btn-danger" href="/posts/{{ $post['id'] }}" role="button">Delete</a>
+                    <a name="btn-edit" id="btn-edit" class="btn btn-primary" href="/posts/{{ $post['id'] }}/edit" role="button">Edit</a>
+                    <a name="btn-delete" id="btn-delete" class="btn btn-danger" href="/posts/{{ $post['id'] }}/delete" role="button">Delete</a>
                 </td>
             </tr>
             @endforeach
