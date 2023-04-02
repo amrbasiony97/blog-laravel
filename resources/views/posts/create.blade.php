@@ -19,12 +19,11 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="post-creator" class="form-label">Post Creator</label>
-            <select class="form-select form-select" name="post-creator" id="post-creator">
-                <option value="ahmed">Ahmed</option>
-                <option value="amr">Amr</option>
-                <option value="mohamed">Mohamed</option>
-                <option value="saad">Saad</option>
+            <label for="user_id" class="form-label">Post Creator</label>
+            <select class="form-select form-select" name="user_id" id="user_id">
+                @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="text-center">

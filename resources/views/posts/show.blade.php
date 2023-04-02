@@ -16,8 +16,8 @@
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="post-info-heading"
                 data-bs-parent="#post-info">
                 <div class="accordion-body">
-                    <p><strong>Title: </strong>{{ $post['title'] }}</p>
-                    <p><strong>Description: </strong>{{ $post['description'] }}</p>
+                    <p><strong>Title: </strong>{{ $post->title }}</p>
+                    <p><strong>Description: </strong>{{ $post->description }}</p>
                 </div>
             </div>
         </div>
@@ -31,8 +31,9 @@
             <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="post-creator-info-heading"
                 data-bs-parent="#post-creator-info">
                 <div class="accordion-body">
-                    <p><strong>Name: </strong>{{ $post['posted_by'] }}</p>
-                    <p><strong>Created At: </strong>{{ $post['created_at'] }}</p>
+                    <p><strong>Name: </strong>{{ $post->user->name }}</p>
+                    <p><strong>Email: </strong>{{ $post->user->email }}</p>
+                    <p><strong>Created At: </strong>{{ date('l jS \of F Y h:i:s A', strtotime($post->created_at)) }}</p>
                 </div>
             </div>
         </div>
