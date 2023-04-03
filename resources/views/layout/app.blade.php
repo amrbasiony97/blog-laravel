@@ -20,7 +20,7 @@
             <a class="nav-link text-light" href="{{ route('posts.index') }}">All Blogs</a>
         </nav>
     </header>
-    <main class="container">
+    <main class="container" style="margin-top: 50px;">
         @yield('content')
     </main>
 

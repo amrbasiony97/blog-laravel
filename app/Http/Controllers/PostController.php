@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Post;
 
@@ -10,11 +11,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
-
-        return view('posts.index', [
-            'posts' => $posts
-        ]);
+        $data['posts'] = Post::paginate(5);
+        return view('posts.index', $data);
     }
 
     public function create()
@@ -30,43 +28,45 @@ class PostController extends Controller
     {
         $title = 'Spring Boot';
         $description = 'Spring Boot is a web application framework';
-        Post::create([
-           'title' => $_POST['title'],
-           'description' => $_POST['description'],
-           'user_id' => $_POST['user_id']
-        ]);
+        if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['user_id'])) {
+            Post::create([
+                'title' => $_POST['title'],
+                'description' => $_POST['description'],
+                'user_id' => $_POST['user_id']
+            ]);
+        }
         return to_route('posts.index');
     }
 
     public function show($id)
     {
         $post = Post::find($id);
+        $comments = Post::with('comments')->paginate(5);
 
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments
         ]);
     }
 
     public function edit($id)
     {
-        // fetch data from database by $id
-        $post = [
-            'id' => 1,
-            'title' => 'Node JS',
-            'description' => 'Node JS is a JavaScript runtime built on Chrome V8.',
-            'posted_by' => 'John Doe',
-            'created_at' => '2020-01-01'
-        ];
+        $old_post = Post::find($id);
+        $users = User::all();
+
         return view('posts.edit', [
-            'post' => $post
+            'old_post' => $old_post,
+            'users' => $users
         ]);
     }
 
     public function update($id)
     {
-        // Update data in database
-        // ...
-
+        $affected = DB::table('posts')->where('id', $id)->update([
+            'title' => $_POST['title'],
+            'description' => $_POST['description'],
+            'user_id' => $_POST['user_id']
+        ]);
         return to_route('posts.index');
     }
 
@@ -79,9 +79,7 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        // Delete record from database
-        // ...
-
+        DB::table('posts')->where('id', $id)->delete();
         return to_route('posts.index');
     }
 }

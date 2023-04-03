@@ -33,7 +33,7 @@
                 <div class="accordion-body">
                     <p><strong>Name: </strong>{{ $post->user->name }}</p>
                     <p><strong>Email: </strong>{{ $post->user->email }}</p>
-                    <p><strong>Created At: </strong>{{ date('l jS \of F Y h:i:s A', strtotime($post->created_at)) }}</p>
+                    <p><strong>Created At: </strong>{{ \Carbon\Carbon::parse($post->created_at)->format('l jS \of F Y h:i:s A') }}</p>
                 </div>
             </div>
         </div>
