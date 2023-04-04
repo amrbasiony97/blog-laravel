@@ -7,7 +7,7 @@
 <form action="{{ route('posts.store') }}" method="POST" class="w-50 mt-3 mx-auto">
     @csrf
     <fieldset>
-        <legend>Create new post</legend>
+        <legend><h2>Create new post</h2>array</legend>
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" id="title" name="title" class="form-control">

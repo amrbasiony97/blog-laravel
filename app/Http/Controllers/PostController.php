@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -26,8 +27,6 @@ class PostController extends Controller
 
     public function store()
     {
-        $title = 'Spring Boot';
-        $description = 'Spring Boot is a web application framework';
         if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['user_id'])) {
             Post::create([
                 'title' => $_POST['title'],
@@ -41,7 +40,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $comments = Post::with('comments')->paginate(5);
+        $comments = Comment::where('commentable_type', 'App\Models\Post')->where('commentable_id', $id)->paginate(3);
 
         return view('posts.show', [
             'post' => $post,
@@ -62,7 +61,7 @@ class PostController extends Controller
 
     public function update($id)
     {
-        $affected = DB::table('posts')->where('id', $id)->update([
+        DB::table('posts')->where('id', $id)->update([
             'title' => $_POST['title'],
             'description' => $_POST['description'],
             'user_id' => $_POST['user_id']
@@ -80,6 +79,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         DB::table('posts')->where('id', $id)->delete();
+        DB::table('comments')->where('commentable_id', $id)->delete();
         return to_route('posts.index');
     }
 }

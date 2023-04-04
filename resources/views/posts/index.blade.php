@@ -10,7 +10,7 @@
                 Post</a>
         </div>
         <div class="table-responsive mt-4">
-            <table class="table table-light">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>

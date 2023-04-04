@@ -9,7 +9,7 @@
     @method('PATCH')
     {{ method_field('PATCH') }}
     <fieldset>
-        <legend>Update Post</legend>
+        <legend><h2>Update Post</h2></legend>
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" id="title" name="title" class="form-control" value="{{ $old_post['title'] }}" required>
