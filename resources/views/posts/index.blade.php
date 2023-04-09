@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title')
     Index
@@ -15,9 +15,10 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Title</th>
+                        <th scope="col">Slug</th>
                         <th scope="col">Posted By</th>
                         <th scope="col">Created At</th>
-                        <th scope="col">Actions</th>
+                        <th style="width: 20%;"scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
+                            <td>{{ $post->slug }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</td>
                             <td>
@@ -48,7 +50,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Are you sure to delete post <span id="post-id"></span> ?
+                                                Are you sure to delete post?
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="" method="POST" id='delete-form'>
@@ -75,7 +77,6 @@
             {{ $posts->links() }}
         </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let id;
         $(document).ready(function() {

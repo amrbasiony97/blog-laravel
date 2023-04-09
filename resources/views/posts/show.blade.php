@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title')
     Show
@@ -6,6 +6,11 @@
 
 @section('content')
     <h2>Post {{ $post->id }} Details</h2>
+    @if($post->image)
+    <div class="text-center">
+        <img style="height: 300px; margin: 20px 0; border-radius: 12px;" src="{{ asset('images/'. $post->image) }}" alt="post-image">
+    </div>
+    @endif
     <div class="accordion" id="post-info">
         <div class="accordion-item mt-4">
             <h2 class="accordion-header" id="post-info-heading">
@@ -87,8 +92,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="comment-edit-container d-none " role="alert">
-                    <form action="" method="POST" id='edit-form'
+                <div class="comment-edit-container d-none " role="alert" data-comment-id="{{ $comment->id }}">
+                    <form action="{{ route('comments.update', ['comment' => $comment->id]) }}" method="POST" id='edit-form'
                         class="alert alert-light my-0 d-flex justify-content-between align-items-center">
                         @csrf
                         @method('PATCH')
@@ -102,11 +107,6 @@
                             </button>
                         </div>
                     </form>
-
-
-
-
-
                 </div>
             @endforeach
         @else
@@ -138,27 +138,24 @@
             </fieldset>
         </form>
     </div>
-@endsection
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    let id;
-    $(document).ready(function() {
-        $('button[data-bs-target="#exampleModal"]').on('click', function() {
-            id = $(this).get(0).dataset['id'];
-            $('#delete-form').attr('action', '/comments/' + id);
+    <script>
+        let id;
+        $(document).ready(function() {
+            $('button[data-bs-target="#exampleModal"]').on('click', function() {
+                id = $(this).get(0).dataset['id'];
+                $('#delete-form').attr('action', '/comments/' + id);
+            });
+
+            $('.edit-btn').on('click', function() {
+                $(this).closest('.comment-container').toggleClass('d-none');
+                $(this).closest('.comment-container').next().toggleClass('d-none');
+            })
+
+            $('.edit-cancel-btn').on('click', function() {
+                $(this).closest('.comment-edit-container').toggleClass('d-none');
+                $(this).closest('.comment-edit-container').prev().toggleClass('d-none')
+            })
         });
-
-        $('.edit-btn').on('click', function() {
-            $(this).closest('.comment-container').toggleClass('d-none');
-            $(this).closest('.comment-container').next().toggleClass('d-none');
-            id = $(this).get(0).dataset['id'];
-            $('#edit-form').attr('action', '/comments/' + id);
-        })
-
-        $('.edit-cancel-btn').on('click', function() {
-            $(this).closest('.comment-edit-container').toggleClass('d-none');
-            $(this).closest('.comment-edit-container').prev().toggleClass('d-none')
-        })
-    });
-</script>
+    </script>
+@endsection

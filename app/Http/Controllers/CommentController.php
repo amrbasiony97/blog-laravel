@@ -23,7 +23,6 @@ class CommentController extends Controller
 
     public function update($id)
     {
-        dd($id);
         DB::table('comments')->where('id', $id)->update([
             'comment' => $_POST['comment']
         ]);

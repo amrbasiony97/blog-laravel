@@ -1,4 +1,4 @@
-@extends('layout.app')
+{{-- @extends('layout.app')
 
 @section('title')
     Delete
@@ -12,8 +12,8 @@
             @csrf
             @method('DELETE')
             {{ method_field('DELETE') }}
-            <a name="" id="" class="btn btn-primary" href="{{ route('posts.index') }}" role="button">Cancel</a>
+            <a class="btn btn-primary" href="{{ route('posts.index') }}" role="button">Cancel</a>
             <button type="submit" class="btn btn-success">Delete</button>
         </form>
     </div>
-@endsection
+@endsection --}}
